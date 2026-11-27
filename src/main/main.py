@@ -4,8 +4,10 @@ from argparse import ArgumentParser
 def args_parser():
     parser = ArgumentParser()
     parser.add_argument('--training_dataset', type = str, default = 'barissglc/tarot', help = 'Dataset to train the tarot reader model')
+    parser.add_argument('--eval_dataset', type = str, help = 'Dataset to train the tarot reader model', required = false)
     parser.add_argument('--contextual_dataset', type = str, default = 'barissglc/tarot', help = 'Dataset to add RAG context to the tarot reader', required=False)
-    parser.add_argument('--base_model_name', type = str, default = 'meta-llama/Llama-3.2-3B-Instruct', help = 'Model being trained on the tarot data')
+    parser.add_argument('--base_model_name', type = str, default = 'meta-llama/Llama-3.2-1B-Instruct', help = 'Student Model being trained on the tarot data')
+    parser.add_argument('--teacher_model_name', type = str, default = 'meta-llama/Llama-3.2-3B-Instruct', help = 'Teacher Model being used for distilling the student model on the tarot data')
     return parser.parse_args()
 
 if __name__ == '__main__':
